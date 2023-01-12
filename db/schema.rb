@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_12_014727) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_12_100232) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_12_014727) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
+
+  create_table "payment_orders", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "description"
+    t.datetime "paid_at"
+    t.bigint "originator_id"
+    t.bigint "assignee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignee_id"], name: "index_payment_orders_on_assignee_id"
+    t.index ["originator_id"], name: "index_payment_orders_on_originator_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,4 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_12_014727) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "payment_orders", "users", column: "assignee_id"
+  add_foreign_key "payment_orders", "users", column: "originator_id"
 end

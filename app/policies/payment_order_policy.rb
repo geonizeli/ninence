@@ -1,22 +1,22 @@
-class UserPolicy < ApplicationPolicy
+class PaymentOrderPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      return scope.none unless @user.admin?
+      scope.all if @user.admin?
 
-      scope.all
+      scope.where(originator_id: @user.id)
     end
   end
 
   def index?
-    @user.admin?
+    true
   end
 
   def show?
-    @user.admin?
+    @user.admin? || @record.originator_id == @user.id
   end
 
   def create?
-    @user.admin?
+    true
   end
 
   def update?
