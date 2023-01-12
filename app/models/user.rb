@@ -4,5 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :trackable,
          :recoverable, :rememberable, :validatable
 
-  enumerize :role, in: [:user, :admin], default: :user
+  enumerize :role, in: [:guest, :admin], default: :guest
+
+  self.role.values.each do |role|
+    define_method "#{role}?" do
+      self.role == role
+    end
+  end
 end
