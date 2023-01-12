@@ -1,18 +1,30 @@
 ActiveAdmin.register PaymentOrder do
+  permit_params :title, :description, :paid_at, :originator_id, :assignee_id, :billet, :receipt
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :title, :description, :paid_at, :originator_id, :assignee_id
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:title, :description, :paid_at, :originator_id, :assignee_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  
+  show do
+    attributes_table do
+      row :title
+      row :description
+      row :paid_at
+      row :originator
+      row :assignee
+      row :billet do |ad|
+        link_to ad.billet.filename, url_for(ad.billet)
+      end
+      row :receipt do |ad|
+        link_to ad.receipt.filename, url_for(ad.receipt)
+      end
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
+  end
+
+  form do |f|
+    f.semantic_errors
+    f.inputs
+    f.input :billet, as: :file
+    f.input :receipt, as: :file
+    f.actions
+  end
 end

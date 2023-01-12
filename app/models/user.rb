@@ -11,4 +11,8 @@ class User < ApplicationRecord
       self.role == role
     end
   end
+
+  def name
+    email.split('@').first
+  end
 end
