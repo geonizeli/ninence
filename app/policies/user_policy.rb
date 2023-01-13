@@ -12,7 +12,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    @user.admin?
+    @record == @user || @user.admin?
   end
 
   def create?
@@ -20,7 +20,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.admin?
+    @record == @user || @user.admin?
   end
 
   def destroy?
