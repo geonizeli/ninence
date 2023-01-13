@@ -1,11 +1,16 @@
 ActiveAdmin.register PaymentOrder do
-  permit_params :title, :description, :paid_at, :originator_id, :assignee_id, :billet, :receipt
+  config.batch_actions = false
+
+  filter :title
+  filter :paid_at
+  filter :created_at
+  filter :updated_at
+
+  permit_params :title, :paid_at, :originator_id, :assignee_id, :billet, :receipt
 
   before_create do |payment_order|
     payment_order.originator = current_user
   end
-
-  config.batch_actions = false
 
   form do |f|
     f.semantic_errors
