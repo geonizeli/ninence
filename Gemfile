@@ -84,3 +84,5 @@ gem "draper", "~> 4.0"
 gem "pundit", "~> 2.3"
 
 gem "active_admin_theme", "~> 1.1"
+
+gem "activeadmin_jfu_upload", "~> 0.2.4"
