@@ -46,6 +46,7 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_admin_theme (1.1.4)
     activeadmin (2.13.1)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1, < 5.0)
@@ -84,10 +85,6 @@ GEM
     arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
-    arctic_admin (3.3.0)
-      activeadmin (>= 1.1.0, < 3.0)
-      font-awesome-sass (~> 5.0)
-      jquery-rails
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.15.0)
@@ -126,8 +123,6 @@ GEM
       activesupport (>= 3.2)
     erubi (1.12.0)
     ffi (1.15.5)
-    font-awesome-sass (5.15.1)
-      sassc (>= 1.11)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
@@ -327,8 +322,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_admin_theme (~> 1.1)
   activeadmin (~> 2.13)
-  arctic_admin (~> 3.3)
   bootsnap
   capybara
   debug

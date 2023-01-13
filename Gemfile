@@ -83,4 +83,4 @@ gem "draper", "~> 4.0"
 
 gem "pundit", "~> 2.3"
 
-gem "arctic_admin", "~> 3.3"
+gem "active_admin_theme", "~> 1.1"
