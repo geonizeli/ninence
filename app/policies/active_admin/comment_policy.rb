@@ -18,10 +18,16 @@ class ActiveAdmin::CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    true
+    record_from_user?
   end
 
   def destroy?
-    true
+    record_from_user?
+  end
+
+  private
+
+  def record_from_user?
+    record.author == user
   end
 end

@@ -5,6 +5,16 @@ ActiveAdmin.register PaymentOrder do
     payment_order.originator = current_user
   end
 
+  config.batch_actions = false
+
+  form do |f|
+    f.semantic_errors
+    f.inputs
+    f.input :billet, as: :file
+    f.input :receipt, as: :file
+    f.actions
+  end
+
   show do
     attributes_table do
       row :title
@@ -21,13 +31,5 @@ ActiveAdmin.register PaymentOrder do
       row :updated_at
     end
     active_admin_comments
-  end
-
-  form do |f|
-    f.semantic_errors
-    f.inputs
-    f.input :billet, as: :file
-    f.input :receipt, as: :file
-    f.actions
   end
 end
