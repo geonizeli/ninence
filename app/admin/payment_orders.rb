@@ -1,18 +1,21 @@
 ActiveAdmin.register PaymentOrder do
   permit_params :title, :description, :paid_at, :originator_id, :assignee_id, :billet, :receipt
 
+  before_create do |payment_order|
+    payment_order.originator = current_user
+  end
+
   show do
     attributes_table do
       row :title
-      row :description
       row :paid_at
       row :originator
       row :assignee
-      row :billet do |ad|
-        link_to ad.billet.filename, url_for(ad.billet)
+      row :billet do |file|
+        link_to file.billet.filename, url_for(file.billet) if file.billet.attached?
       end
-      row :receipt do |ad|
-        link_to ad.receipt.filename, url_for(ad.receipt)
+      row :receipt do |file|
+        link_to file.receipt.filename, url_for(file.receipt) if file.receipt.attached?
       end
       row :created_at
       row :updated_at
