@@ -15,7 +15,7 @@ ActiveAdmin.register PaymentOrder do
   form do |f|
     f.semantic_errors
     f.inputs do
-      f.input :assignee, as: :select, collection: User.all.map { |u| [u.name, u.id] }
+      f.input :assignee, as: :select, collection: User.order(role: :asc).map { |u| [u.name, u.id] }, include_blank: false
       f.input :title
       f.input :paid_at, as: :string, input_html: { type: 'datetime-local' }
       f.input :billet, as: :jfu_upload, hint: (object.billet.attached? ? "Current: #{object.billet.filename}" : nil)
